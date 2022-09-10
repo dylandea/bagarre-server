@@ -13,6 +13,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^6.6.0",
     "morgan": "~1.9.1",
-    "socket.io": "^4.5.2"
+    "socket.io": "^4.5.2",
+    "uniqid": "^5.4.0"
   }
 }
