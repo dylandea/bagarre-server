@@ -11,8 +11,8 @@ const socketapi = {
 
 io.on("connection", function (socket) {
 
-	socket.emit("sendMessageFromBack", "New user connected"); //envoyer info comme quoi qqun s'est connecté
-
+	socket.emit("Connection received", "From Server: You're connected !"); //envoyer info comme quoi qqun s'est connecté
+    
 	socket.on("sendMessage", function (message) { //recevoir/écouter
         console.log(session.history)
         if (session.history !== undefined) {
