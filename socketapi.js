@@ -11,7 +11,7 @@ const socketapi = {
 
 io.on("connection", function (socket) {
 
-	socket.emit("Connection received", "From Server: You're connected !"); //envoyer info comme quoi qqun s'est connecté
+	socket.emit("Connection received", session.history); //envoyer info comme quoi qqun s'est connecté
     
 	socket.on("sendMessage", function (message) { //recevoir/écouter
         console.log(session.history)
@@ -26,11 +26,11 @@ io.on("connection", function (socket) {
 		/* socket.broadcast.emit('sendMessageToAll', "New user connected"); */ //envoi à tout le monde sauf celui qui a envoyé
 	});
 
-    socket.on("askforhistory", function (localData) { //recevoir/écouter
+    socket.on("askforhistory", function (usersData) { //recevoir/écouter
         if (session.history == undefined) {
             session.history = []
         }
-        let locD = localData
+        let locD = usersData
         if (locD == undefined) {
             locD = []
         }
@@ -46,8 +46,7 @@ io.on("connection", function (socket) {
             final.sort((a,b)=> new Date(a.date)-new Date(b.date))
             session.history = final
         
-		io.emit("history", session.history); //envoyer un message à tout le monde dont soi-même
-		/* socket.broadcast.emit('sendMessageToAll', "New user connected"); */ //envoi à tout le monde sauf celui qui a envoyé
+		
 	});
 
   socket.on("sendWizz", function (message) { //recevoir/écouter
